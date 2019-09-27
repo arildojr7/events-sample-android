@@ -2,7 +2,7 @@ package com.arildojr.data.event
 
 import com.arildojr.data.event.model.Event
 
-interface EventRepository {
+interface EventDataSource {
 
-    suspend fun getEvents() : List<Event>
+    suspend fun getEvents(): List<Event>
 }
