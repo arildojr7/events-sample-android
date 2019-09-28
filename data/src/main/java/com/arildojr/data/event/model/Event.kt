@@ -1,6 +1,10 @@
 package com.arildojr.data.event.model
 
-class Event(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Event(
     val id: String? = null,
     val title: String? = "",
     val date: Long? = null,
@@ -12,4 +16,4 @@ class Event(
     val people: List<Person>,
     val cupons: List<Coupon>
 
-)
+) : Parcelable
