@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Sicredi Events</string>
+
+
+    <!--event details-->
+    <string name="participate">Participar</string>
+    <string name="localization">Localização</string>
+    <string name="participants">Participantes</string>
 </resources>
