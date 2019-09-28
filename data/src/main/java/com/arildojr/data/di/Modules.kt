@@ -18,4 +18,4 @@ private val dataSourceModule = module {
     single { EventRemoteDataSource(get()) }
 }
 
-fun eventModules() = listOf(apiServiceModule, repositoryModule, dataSourceModule)
+fun getEventModules() = listOf(apiServiceModule, repositoryModule, dataSourceModule)
