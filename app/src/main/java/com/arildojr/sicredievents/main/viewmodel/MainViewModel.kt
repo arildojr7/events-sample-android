@@ -11,9 +11,14 @@ import kotlinx.coroutines.launch
 class MainViewModel(private val eventRepository: EventRepository) : BaseViewModel() {
 
     private val _events = MutableLiveData<List<Event>>()
-    val events: LiveData<List<Event>> = Transformations.map(_events) { it }
+    val events: LiveData<List<Event>> = Transformations.map(_events) { it + it + it }
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = Transformations.map(_isLoading) { it }
 
     fun getEvents() = launch {
+        _isLoading.postValue(true)
         _events.postValue(eventRepository.getEvents())
+        _isLoading.postValue(false)
     }
 }

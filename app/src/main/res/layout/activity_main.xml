@@ -10,11 +10,13 @@
             name="viewModel"
             type="com.arildojr.sicredievents.main.viewmodel.MainViewModel" />
 
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".main.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -27,10 +29,20 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingTop="32dp"
+            android:visibility="@{viewModel.isLoading ? View.INVISIBLE : View.VISIBLE }"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             bind:data="@{viewModel.events}"
             tools:itemCount="3"
             tools:listitem="@layout/item_main_event" />
+
+        <ProgressBar
+            android:id="@+id/progressLoaderEventList"
+            style="@style/ProgressLoader"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.INVISIBLE }" />
 
     </LinearLayout>
 </layout>
