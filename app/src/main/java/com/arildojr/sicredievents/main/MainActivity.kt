@@ -1,7 +1,6 @@
 package com.arildojr.sicredievents.main
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import com.arildojr.sicredievents.R
 import com.arildojr.sicredievents.core.base.BaseActivity
 import com.arildojr.sicredievents.databinding.ActivityMainBinding
@@ -15,15 +14,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.viewModel = viewModel
         setupRecyclerView()
 
         viewModel.getEvents()
-    }
-
-    override fun subscribeUi() {
-        viewModel.events.observe(this, Observer {
-            eventsAdapter.updateList(it + it + it + it + it)
-        })
     }
 
     private fun setupRecyclerView() {
