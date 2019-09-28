@@ -20,6 +20,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -31,6 +34,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(path: ':data')
+
 
     /* KOIN */
     implementation 'org.koin:koin-android-viewmodel:2.0.1'
@@ -38,9 +43,11 @@ dependencies {
     /* GLIDE */
     implementation "com.github.bumptech.glide:glide:4.9.0"
     kapt "com.github.bumptech.glide:compiler:4.9.0"
-    implementation project(path: ':data')
 
     /* COROUTINES */
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
+    /* MATERIAL */
+    implementation "com.google.android.material:material:$material_components_version"
 
 }
