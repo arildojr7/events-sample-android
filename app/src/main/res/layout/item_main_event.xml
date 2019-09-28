@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="item"
+            name="event"
             type="com.arildojr.data.event.model.Event" />
+
+        <variable
+            name="adapter"
+            type="com.arildojr.sicredievents.main.adapter.MainEventsAdapter" />
+
+        <import type="android.view.View" />
 
     </data>
 
@@ -16,9 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> adapter.onItemClicked(event)}">
 
         <ImageView
             android:id="@+id/ivImage"
@@ -27,7 +31,7 @@
             android:importantForAccessibility="no"
             android:scaleType="centerCrop"
             bind:cornerSize="@{4}"
-            bind:imageUrl="@{item.image}"
+            bind:imageUrl="@{event.image}"
             tools:src="@tools:sample/cities" />
 
         <LinearLayout
@@ -43,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:fontFamily="@font/ubuntu_medium"
-                android:text="@{item.title}"
+                android:text="@{event.title}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 tools:text="Miranha" />

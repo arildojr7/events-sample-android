@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun setupRecyclerView() {
-        eventsAdapter = MainEventsAdapter(emptyList())
+        eventsAdapter = MainEventsAdapter(emptyList()) {}
         binding.rvEventList.adapter = eventsAdapter
     }
 }

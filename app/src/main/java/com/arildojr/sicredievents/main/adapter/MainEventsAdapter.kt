@@ -7,7 +7,10 @@ import com.arildojr.data.event.model.Event
 import com.arildojr.sicredievents.core.bindingadapter.BindableAdapter
 import com.arildojr.sicredievents.databinding.ItemMainEventBinding
 
-class MainEventsAdapter(private var items: List<Event>) :
+class MainEventsAdapter(
+    private var items: List<Event>,
+    private val openEventDetails: (Event) -> Unit
+) :
     RecyclerView.Adapter<MainEventsAdapter.ViewHolder>(), BindableAdapter<List<Event>> {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,17 +21,23 @@ class MainEventsAdapter(private var items: List<Event>) :
 
     override fun getItemCount() = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(items[position], this)
 
     override fun setData(data: List<Event>?) {
         this.items = data.orEmpty()
         notifyDataSetChanged()
     }
 
+    fun onItemClicked(item: Event) {
+        openEventDetails(item)
+    }
+
     class ViewHolder(private val binding: ItemMainEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(obj: Event) {
-            binding.item = obj
+        fun bind(event: Event, adapter: MainEventsAdapter) {
+            binding.event = event
+            binding.adapter = adapter
             binding.executePendingBindings()
         }
     }
