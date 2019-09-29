@@ -29,6 +29,7 @@
             bind:imageUrl="@{event.image}" />
 
         <ScrollView
+            android:id="@+id/svContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipChildren="false"
@@ -104,6 +105,7 @@
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/llLocalization"
+                        android:orientation="vertical"
                         app:layout_constraintTop_toBottomOf="@id/llParticipants"
                         android:layout_marginTop="16dp"
                         android:layout_width="match_parent"
@@ -121,6 +123,11 @@
                             android:text="@string/localization"
                             android:textColor="@color/white"
                             android:textSize="16sp"/>
+                        <fragment
+                            android:id="@+id/map"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            class="com.arildojr.sicredievents.core.customview.MapViewCustom" />
 
                     </LinearLayout>
                     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
