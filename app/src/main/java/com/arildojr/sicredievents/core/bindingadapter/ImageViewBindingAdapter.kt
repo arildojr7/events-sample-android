@@ -2,9 +2,11 @@ package com.arildojr.sicredievents.core.bindingadapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.arildojr.sicredievents.R
 import com.arildojr.sicredievents.core.extension.convertDpToPx
 import com.arildojr.sicredievents.core.util.RoundedCornersTransformation
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -33,11 +35,9 @@ fun ImageView.imageFromUrl(
 fun loadImageView(image: ImageView, imageUrl: String?) {
     Glide.with(image.context)
         .load(imageUrl)
-        .apply(
-            RequestOptions()
-                .dontTransform()
-                .error(android.R.color.darker_gray)
-        )
+        .placeholder(R.drawable.placeholder)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .apply(RequestOptions().dontTransform())
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(image)
 }
@@ -50,11 +50,9 @@ fun loadRoundedImageView(
 ) {
     Glide.with(image.context)
         .load(imageUrl)
-        .apply(
-            RequestOptions()
-                .dontTransform()
-                .error(android.R.color.darker_gray)
-        )
+        .placeholder(R.drawable.placeholder)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .apply(RequestOptions().dontTransform())
         .transform(
             CenterCrop(), RoundedCornersTransformation(
                 round.convertDpToPx(image.resources.displayMetrics).toFloat(),
