@@ -5,7 +5,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 private val eventDetailViewModelModule = module {
-    viewModel { EventDetailViewModel() }
+    viewModel { EventDetailViewModel(get()) }
 }
 
 fun getEventDetailModules() = listOf(eventDetailViewModelModule)

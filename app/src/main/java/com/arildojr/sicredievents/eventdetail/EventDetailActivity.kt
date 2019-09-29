@@ -13,17 +13,18 @@ import com.arildojr.sicredievents.eventdetail.customview.CheckInDialog
 import com.arildojr.sicredievents.eventdetail.viewmodel.EventDetailViewModel
 import com.arildojr.sicredievents.main.MainActivity.Companion.KEY_BUNDLE
 import com.arildojr.sicredievents.main.MainActivity.Companion.KEY_EVENT
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import org.koin.android.viewmodel.ext.android.viewModel
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.launch
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class EventDetailActivity :
-    BaseActivity<ActivityEventDetailBinding>(R.layout.activity_event_detail), OnMapReadyCallback {
+    BaseActivity<ActivityEventDetailBinding>(R.layout.activity_event_detail),
+    OnMapReadyCallback {
 
     private val viewModel: EventDetailViewModel by viewModel()
 
