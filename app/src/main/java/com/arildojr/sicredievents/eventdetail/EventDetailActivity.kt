@@ -45,10 +45,10 @@ class EventDetailActivity :
     }
 
     private fun setupListeners() {
-        binding.btnCheckIn.setOnClickListener {
-
+        binding.btnCheckIn.clickWithDebounce {
+            CheckInDialog().show(supportFragmentManager, CHECKIN_DIALOG)
         }
-        binding.fabShare.setOnClickListener {
+        binding.fabShare.clickWithDebounce {
             shareContent(event?.title, event?.description, this)
         }
     }
