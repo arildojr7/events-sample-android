@@ -6,8 +6,10 @@ import com.arildojr.data.event.model.Event
 import com.arildojr.sicredievents.R
 import com.arildojr.sicredievents.core.base.BaseActivity
 import com.arildojr.sicredievents.core.customview.MapViewCustom
+import com.arildojr.sicredievents.core.extension.clickWithDebounce
 import com.arildojr.sicredievents.core.util.shareContent
 import com.arildojr.sicredievents.databinding.ActivityEventDetailBinding
+import com.arildojr.sicredievents.eventdetail.customview.CheckInDialog
 import com.arildojr.sicredievents.eventdetail.viewmodel.EventDetailViewModel
 import com.arildojr.sicredievents.main.MainActivity.Companion.KEY_BUNDLE
 import com.arildojr.sicredievents.main.MainActivity.Companion.KEY_EVENT
@@ -86,4 +88,8 @@ class EventDetailActivity :
     }
 
     // endregion
+
+    companion object {
+        const val CHECKIN_DIALOG = "checkin_dialog"
+    }
 }

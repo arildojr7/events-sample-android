@@ -9,6 +9,10 @@
     <string name="share">Share</string>
     <string name="share_with">Share with...</string>
 
+    <!--check-in-->
+    <string name="your_name">seu nome</string>
+    <string name="your_email">seu e-mail</string>
+
 
     <!--google maps api key-->
     <string name="google_maps_key">AIzaSyAXyUIxLOex_u-cMJn7aI_0r9IBDWmIX5c</string>

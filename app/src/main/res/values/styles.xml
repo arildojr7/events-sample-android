@@ -18,4 +18,12 @@
         <item name="android:indeterminateTint" tools:targetApi="lollipop">@color/white</item>
     </style>
 
+    <style name="RoundedModal" parent="Theme.MaterialComponents.Dialog">
+        <item name="android:windowBackground">@drawable/bg_rounded_model</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowMinWidthMajor">85%</item>
+        <item name="android:windowMinWidthMinor">85%</item>
+    </style>
+
 </resources>
