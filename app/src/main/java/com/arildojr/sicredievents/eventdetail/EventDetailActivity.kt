@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.koin.android.viewmodel.ext.android.viewModel
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.MapStyleOptions
 import kotlinx.coroutines.launch
 
 class EventDetailActivity :
@@ -52,7 +53,12 @@ class EventDetailActivity :
                         )
                     ).title(viewModel.event?.title)
                 )
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 11f))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 18f))
+                map.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                        this@EventDetailActivity, R.raw.maps_style
+                    )
+                )
 
                 mapFragment?.setListener(object : MapViewCustom.OnTouchListener {
                     override fun onTouch() {
