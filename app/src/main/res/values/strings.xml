@@ -6,4 +6,8 @@
     <string name="participate">Participar</string>
     <string name="localization">Localização</string>
     <string name="participants">Participantes</string>
+
+
+    <!--google maps api key-->
+    <string name="google_maps_key">AIzaSyAXyUIxLOex_u-cMJn7aI_0r9IBDWmIX5c</string>
 </resources>
