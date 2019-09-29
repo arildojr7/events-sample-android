@@ -3,9 +3,11 @@
 
 
     <!--event details-->
-    <string name="participate">Participar</string>
-    <string name="localization">Localização</string>
-    <string name="participants">Participantes</string>
+    <string name="checkin">Check-in</string>
+    <string name="localization">Localization</string>
+    <string name="participants">Participants</string>
+    <string name="share">Share</string>
+    <string name="share_with">Share with...</string>
 
 
     <!--google maps api key-->

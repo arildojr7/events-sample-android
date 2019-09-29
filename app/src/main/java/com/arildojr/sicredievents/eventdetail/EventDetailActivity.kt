@@ -6,6 +6,7 @@ import com.arildojr.data.event.model.Event
 import com.arildojr.sicredievents.R
 import com.arildojr.sicredievents.core.base.BaseActivity
 import com.arildojr.sicredievents.core.customview.MapViewCustom
+import com.arildojr.sicredievents.core.util.shareContent
 import com.arildojr.sicredievents.databinding.ActivityEventDetailBinding
 import com.arildojr.sicredievents.eventdetail.viewmodel.EventDetailViewModel
 import com.arildojr.sicredievents.main.MainActivity.Companion.KEY_BUNDLE
@@ -36,8 +37,21 @@ class EventDetailActivity :
             binding.event = bundle?.getParcelable(KEY_EVENT)
         }
 
+        setupListeners()
+
         mapFragment?.getMapAsync(this)
     }
+
+    private fun setupListeners() {
+        binding.btnCheckIn.setOnClickListener {
+
+        }
+        binding.fabShare.setOnClickListener {
+            shareContent(event?.title, event?.description, this)
+        }
+    }
+
+    // region MAPS
 
     override fun onMapReady(map: GoogleMap) {
         val latitude = event?.latitude?.toDoubleOrNull()
@@ -70,4 +84,6 @@ class EventDetailActivity :
             binding.llLocalization.visibility = View.GONE
         }
     }
+
+    // endregion
 }
