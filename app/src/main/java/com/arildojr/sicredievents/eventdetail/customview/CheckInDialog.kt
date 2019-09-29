@@ -26,6 +26,7 @@ class CheckInDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentDialogCheckinBinding.inflate(LayoutInflater.from(context))
         binding.isLoading = false
+        binding.requestResponse = false
 
         subscribeUi()
         setupListeners()
@@ -52,8 +53,10 @@ class CheckInDialog : DialogFragment() {
     }
 
     private fun subscribeUi() {
-        viewModel.checkInIsSuccessful.observe(this, Observer {
+        viewModel.checkInResult.observe(this, Observer { isSuccessful ->
             binding.isLoading = false
+            binding.requestResponse = true
+            binding.successful = isSuccessful
         })
     }
 

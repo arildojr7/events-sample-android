@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="requestResponse"
+            type="Boolean" />
+
+        <variable
+            name="successful"
             type="Boolean" />
 
         <import type="android.view.View" />
@@ -15,7 +24,7 @@
     <LinearLayout
         style="@style/RoundedModal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:animateLayoutChanges="true"
         android:background="@color/white"
@@ -24,106 +33,186 @@
         android:paddingEnd="16dp">
 
         <LinearLayout
-            android:id="@+id/llFieldsCheckIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="@{isLoading ? View.GONE : View.VISIBLE }">
+            android:visibility="@{requestResponse ? View.GONE : View.VISIBLE }">
 
-            <TextView
-                android:id="@+id/tvCheckInTitle"
+            <LinearLayout
+                android:id="@+id/llFieldsCheckIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE }">
+
+                <TextView
+                    android:id="@+id/tvCheckInTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="@string/checkin"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textColorHint="@color/colorAccent"
+                    app:boxStrokeColor="@color/lightGray"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:hintTextColor="@color/black80">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tieName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:hint="@string/your_name"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:maxLines="1"
+                        android:nextFocusDown="@+id/tieEmail"
+                        android:padding="12dp"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/black80"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmail"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textColorHint="@color/colorAccent"
+                    app:boxStrokeColor="@color/lightGray"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:hintTextColor="@color/black80">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tieEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:hint="@string/your_email"
+                        android:importantForAutofill="no"
+                        android:maxLines="1"
+                        android:padding="12dp"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/black80"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckInFragment"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorAccent"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/checkin"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/white"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE }"
+                app:cornerRadius="24dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textColorHint="@color/colorAccent"
-                app:boxStrokeColor="@color/lightGray"
-                app:boxStrokeWidthFocused="1dp"
-                app:hintTextColor="@color/black80">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tieName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/ubuntu_medium"
-                    android:hint="@string/your_name"
-                    android:imeOptions="actionNext"
-                    android:importantForAutofill="no"
-                    android:maxLines="1"
-                    android:nextFocusDown="@+id/tieEmail"
-                    android:padding="12dp"
-                    android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/black80"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmail"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textColorHint="@color/colorAccent"
-                app:boxStrokeColor="@color/lightGray"
-                app:boxStrokeWidthFocused="1dp"
-                app:hintTextColor="@color/black80">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tieEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/ubuntu_medium"
-                    android:hint="@string/your_email"
-                    android:importantForAutofill="no"
-                    android:maxLines="1"
-                    android:padding="12dp"
-                    android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/black80"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <ProgressBar
+                android:id="@+id/progressLoaderCheckIn"
+                style="@style/ProgressLoader"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="36dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/colorAccent"
+                android:visibility="@{isLoading ? View.VISIBLE : View.GONE }"
+                tools:visibility="gone" />
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCheckInFragment"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorAccent"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/ubuntu_medium"
-            android:text="@string/checkin"
-            android:textColor="@color/white"
-            android:visibility="@{isLoading ? View.GONE : View.VISIBLE }"
-            app:cornerRadius="24dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{requestResponse &amp;&amp; successful ? View.VISIBLE : View.GONE }"
+            tools:visibility="gone">
 
-        <ProgressBar
-            android:id="@+id/progressLoaderCheckIn"
-            style="@style/ProgressLoader"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="36dp"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/colorAccent"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE }" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieFireworks"
+                android:layout_width="128dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="success.json"
+                app:lottie_loop="false" />
 
+            <TextView
+                android:id="@+id/tvSuccessful"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_medium"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="32dp"
+                android:text="@string/checkin_successful"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lottieFireworks" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{requestResponse &amp;&amp; !successful ? View.VISIBLE : View.GONE }"
+            tools:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieError"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="face_animation.json"
+                app:lottie_loop="true" />
+
+            <TextView
+                android:id="@+id/tvError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_medium"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="32dp"
+                android:text="@string/checkin_error"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lottieError" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </layout>

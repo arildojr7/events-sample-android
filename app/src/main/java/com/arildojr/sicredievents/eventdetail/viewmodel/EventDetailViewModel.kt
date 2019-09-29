@@ -13,10 +13,10 @@ class EventDetailViewModel(private val eventRepository: EventRepository) : BaseV
 
     var event: Event? = null
 
-    private val _checkInIsSuccessful = MutableLiveData<Boolean>()
-    val checkInIsSuccessful: LiveData<Boolean> = Transformations.map(_checkInIsSuccessful) { it }
+    private val _checkInResult = MutableLiveData<Boolean>()
+    val checkInResult: LiveData<Boolean> = Transformations.map(_checkInResult) { it }
 
     fun checkIn(request: CheckInUserDTO) = launch {
-        _checkInIsSuccessful.postValue(eventRepository.checkIn(request))
+        _checkInResult.postValue(eventRepository.checkIn(request))
     }
 }

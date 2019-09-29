@@ -12,6 +12,8 @@
     <!--check-in-->
     <string name="your_name">seu nome</string>
     <string name="your_email">seu e-mail</string>
+    <string name="checkin_successful">check-in realizado com sucesso!</string>
+    <string name="checkin_error">Oops!\nOcorreu um erro</string>
 
 
     <!--google maps api key-->
