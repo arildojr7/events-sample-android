@@ -32,6 +32,17 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".core.receiver.NetworkChangeReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <!-- Intent filters for broadcast receiver -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+        </receiver>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
