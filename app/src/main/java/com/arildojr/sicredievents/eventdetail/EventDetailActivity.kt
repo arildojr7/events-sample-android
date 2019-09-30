@@ -6,7 +6,9 @@ import com.arildojr.data.event.model.Event
 import com.arildojr.sicredievents.R
 import com.arildojr.sicredievents.core.base.BaseActivity
 import com.arildojr.sicredievents.core.customview.MapViewCustom
+import com.arildojr.sicredievents.core.customview.NoInternetDialog
 import com.arildojr.sicredievents.core.extension.clickWithDebounce
+import com.arildojr.sicredievents.core.util.hasInternet
 import com.arildojr.sicredievents.core.util.shareContent
 import com.arildojr.sicredievents.databinding.ActivityEventDetailBinding
 import com.arildojr.sicredievents.eventdetail.customview.CheckInDialog
@@ -47,7 +49,11 @@ class EventDetailActivity :
 
     private fun setupListeners() {
         binding.btnCheckIn.clickWithDebounce {
-            CheckInDialog().show(supportFragmentManager, CHECKIN_DIALOG)
+            if (hasInternet(this)) {
+                CheckInDialog().show(supportFragmentManager, CHECKIN_DIALOG)
+            } else {
+                NoInternetDialog().show(supportFragmentManager, NO_INTERNET_DIALOG)
+            }
         }
         binding.fabShare.clickWithDebounce {
             shareContent(event?.title, event?.description, this)
@@ -92,5 +98,6 @@ class EventDetailActivity :
 
     companion object {
         const val CHECKIN_DIALOG = "checkin_dialog"
+        const val NO_INTERNET_DIALOG = "no_internet_dialog"
     }
 }

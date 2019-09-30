@@ -18,7 +18,7 @@ class CheckInDialog : DialogFragment() {
     private lateinit var binding: FragmentDialogCheckinBinding
 
     private val viewModel: EventDetailViewModel by lazy {
-        ViewModelProvider(activity!!, ViewModelProvider.NewInstanceFactory()).get(
+        ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()).get(
             EventDetailViewModel::class.java
         )
     }
