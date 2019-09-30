@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.arildojr.sicredievents.R
 import com.arildojr.sicredievents.core.base.BaseActivity
+import com.arildojr.sicredievents.core.util.hasInternet
 import com.arildojr.sicredievents.databinding.ActivityMainBinding
 import com.arildojr.sicredievents.eventdetail.EventDetailActivity
 import com.arildojr.sicredievents.main.adapter.MainEventsAdapter
@@ -18,9 +19,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
-        setupRecyclerView()
 
-        viewModel.getEvents()
+        if (hasInternet(this)) {
+            viewModel.setInternetAccess(true)
+            viewModel.getEvents()
+        } else {
+            viewModel.setInternetAccess(false)
+        }
+
+        setupRecyclerView()
     }
 
     private fun setupRecyclerView() {
@@ -31,6 +38,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             startActivity(intent)
         }
         binding.rvEventList.adapter = eventsAdapter
+    }
+
+    override fun onConnectionChanged(isConnected: Boolean) {
+        viewModel.setInternetAccess(isConnected)
+        if (isConnected) { viewModel.getEvents() }
+        binding.invalidateAll()
     }
 
     companion object {

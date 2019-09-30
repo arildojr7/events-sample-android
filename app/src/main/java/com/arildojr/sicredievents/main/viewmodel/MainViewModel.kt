@@ -16,9 +16,16 @@ class MainViewModel(private val eventRepository: EventRepository) : BaseViewMode
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = Transformations.map(_isLoading) { it }
 
+    var hasInternet : Boolean = true
+    private set
+
     fun getEvents() = launch {
         _isLoading.postValue(true)
         _events.postValue(eventRepository.getEvents())
         _isLoading.postValue(false)
+    }
+
+    fun setInternetAccess(hasInternet: Boolean) {
+        this.hasInternet = hasInternet
     }
 }

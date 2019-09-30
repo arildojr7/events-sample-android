@@ -19,30 +19,66 @@
         android:orientation="vertical"
         tools:context=".main.MainActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvEventList"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            android:paddingTop="32dp"
-            android:visibility="@{viewModel.isLoading ? View.INVISIBLE : View.VISIBLE }"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            bind:data="@{viewModel.events}"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_main_event" />
-
-        <ProgressBar
-            android:id="@+id/progressLoaderEventList"
-            style="@style/ProgressLoader"
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.INVISIBLE }" />
+            android:orientation="vertical"
+            android:visibility="@{viewModel.hasInternet ? View.VISIBLE : View.GONE }">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEventList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingTop="32dp"
+                android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE }"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:data="@{viewModel.events}"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_main_event" />
+
+            <ProgressBar
+                android:id="@+id/progressLoaderEventList"
+                style="@style/ProgressLoader"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE }" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.hasInternet ? View.GONE : View.VISIBLE }">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="128dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="face_animation.json"
+                app:lottie_loop="true" />
+
+            <TextView
+                android:id="@+id/tvError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/ubuntu_medium"
+                android:paddingTop="16dp"
+                android:text="@string/no_internet"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>
