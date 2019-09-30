@@ -21,7 +21,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class EventDetailActivity :
@@ -67,28 +66,26 @@ class EventDetailActivity :
         val longitude = event?.longitude?.toDoubleOrNull()
 
         if (latitude != null && longitude != null) {
-            launch {
-                map.addMarker(
-                    MarkerOptions().position(
-                        LatLng(
-                            latitude,
-                            longitude
-                        )
-                    ).title(viewModel.event?.title)
-                )
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 18f))
-                map.setMapStyle(
-                    MapStyleOptions.loadRawResourceStyle(
-                        this@EventDetailActivity, R.raw.maps_style
+            map.addMarker(
+                MarkerOptions().position(
+                    LatLng(
+                        latitude,
+                        longitude
                     )
+                ).title(viewModel.event?.title)
+            )
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 18f))
+            map.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                    this@EventDetailActivity, R.raw.maps_style
                 )
+            )
 
-                mapFragment?.setListener(object : MapViewCustom.OnTouchListener {
-                    override fun onTouch() {
-                        binding.svContainer.requestDisallowInterceptTouchEvent(true)
-                    }
-                })
-            }
+            mapFragment?.setListener(object : MapViewCustom.OnTouchListener {
+                override fun onTouch() {
+                    binding.svContainer.requestDisallowInterceptTouchEvent(true)
+                }
+            })
         } else {
             binding.llLocalization.visibility = View.GONE
         }
