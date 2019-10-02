@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sicredi Events</string>
+    <string name="app_name">Events Sample</string>
 
     <!--event details-->
     <string name="checkin">Check-in</string>

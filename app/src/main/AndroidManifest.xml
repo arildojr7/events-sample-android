@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.arildojr.sicredievents">
+    package="com.arildojr.events">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".App"
+        android:name="com.arildojr.events.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,11 +19,11 @@
         tools:targetApi="m">
 
         <activity
-            android:name=".eventdetail.EventDetailActivity"
+            android:name="com.arildojr.events.eventdetail.EventDetailActivity"
             android:theme="@style/AppTheme.Fullscreen"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".main.MainActivity"
+        <activity android:name="com.arildojr.events.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
         </activity>
 
         <receiver
-            android:name=".core.receiver.NetworkChangeReceiver"
+            android:name="com.arildojr.events.core.receiver.NetworkChangeReceiver"
             android:enabled="true">
             <intent-filter>
                 <!-- Intent filters for broadcast receiver -->

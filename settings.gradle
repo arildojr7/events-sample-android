@@ -1,2 +1,2 @@
 include ':app', ':data'
-rootProject.name='Sicredi Events'
+rootProject.name='Events Sample'

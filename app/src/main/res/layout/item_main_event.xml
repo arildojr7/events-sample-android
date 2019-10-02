@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.arildojr.sicredievents.main.adapter.MainEventsAdapter" />
+            type="com.arildojr.events.main.adapter.MainEventsAdapter" />
 
         <import type="android.view.View" />
 

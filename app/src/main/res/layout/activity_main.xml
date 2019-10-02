@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.arildojr.sicredievents.main.viewmodel.MainViewModel" />
+            type="com.arildojr.events.main.viewmodel.MainViewModel" />
 
         <import type="android.view.View" />
     </data>
