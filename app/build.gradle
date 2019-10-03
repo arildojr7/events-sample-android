@@ -62,4 +62,8 @@ dependencies {
     /* LOTTIE */
     implementation "com.airbnb.android:lottie:3.0.7"
 
+    /* MOCKITO */
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 }
