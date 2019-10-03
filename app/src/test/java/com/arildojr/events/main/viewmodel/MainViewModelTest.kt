@@ -24,9 +24,7 @@ class MainViewModelTest {
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
 
-    @Mock
     private lateinit var repo: EventRepository
-
     private lateinit var mainViewModel: MainViewModel
     private val testEvents = listOf(
         Event(
@@ -54,7 +52,7 @@ class MainViewModelTest {
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
+        repo = mock()
         whenever(runBlocking { repo.getEvents() }).thenReturn(testEvents)
         mainViewModel = MainViewModel(repo)
     }
