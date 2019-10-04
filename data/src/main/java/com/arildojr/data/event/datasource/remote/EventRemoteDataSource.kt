@@ -6,8 +6,8 @@ import com.arildojr.data.event.dto.CheckInUserDTO
 import com.arildojr.data.event.model.Event
 
 class EventRemoteDataSource(private val apiService: EventApiService) : EventDataSource {
-    override suspend fun getEvents(): List<Event> {
-        return apiService.getEvents().body() ?: emptyList()
+    override suspend fun getEvents(): List<Event>? {
+        return apiService.getEvents().body()
     }
 
     override suspend fun checkIn(request: CheckInUserDTO): Boolean {

@@ -15,6 +15,7 @@
     <!--google maps api key-->
     <string name="google_maps_key">AIzaSyAXyUIxLOex_u-cMJn7aI_0r9IBDWmIX5c</string>
 
-    <!--no internet-->
-    <string name="no_internet">Oops!\nSem internet</string>
+    <!--error modal-->
+    <string name="error_ocurred">Oops!\nOcorreu algum error</string>
+    <string name="try_again">Tentar novamente</string>
 </resources>
