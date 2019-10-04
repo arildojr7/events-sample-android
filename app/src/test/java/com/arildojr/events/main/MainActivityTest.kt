@@ -8,11 +8,13 @@ import com.arildojr.data.event.model.Event
 import com.arildojr.data.event.model.Person
 import com.arildojr.events.main.adapter.MainEventsAdapter
 import kotlinx.android.synthetic.main.item_main_event.view.*
+import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.context.stopKoin
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import org.robolectric.Robolectric
@@ -95,4 +97,10 @@ class MainActivityTest {
         this.measure(0, 0)
         this.layout(0, 0, 100, 1000)
     }
+
+    @After
+    fun stopKoinModules() {
+        stopKoin()
+    }
+
 }
