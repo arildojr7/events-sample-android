@@ -13,7 +13,6 @@ class ErrorDialog(private val listener: ErrorListener) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentDialogErrorBinding.inflate(LayoutInflater.from(context))
-        isCancelable= false
 
         val alert = AlertDialog.Builder(activity, R.style.RoundedModal)
         alert.setView(binding.root)
