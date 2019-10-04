@@ -1,5 +1,7 @@
 package com.arildojr.events.eventdetail.viewmodel
 
+import android.text.TextUtils
+import androidx.core.util.PatternsCompat.EMAIL_ADDRESS
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -18,5 +20,9 @@ class EventDetailViewModel(private val eventRepository: EventRepository) : BaseV
 
     fun checkIn(request: CheckInUserDTO) = launch {
         _checkInResult.postValue(eventRepository.checkIn(request))
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && EMAIL_ADDRESS.matcher(email).matches()
     }
 }
