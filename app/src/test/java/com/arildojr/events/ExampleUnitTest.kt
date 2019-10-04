@@ -1,4 +1,4 @@
-package com.arildojr.sicredievents
+package com.arildojr.events
 
 import org.junit.Test
 

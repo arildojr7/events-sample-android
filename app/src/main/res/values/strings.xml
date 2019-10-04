@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">Sicredi Events</string>
+    <string name="app_name">Events Sample</string>
+
+    <!--event details-->
+    <string name="checkin">Check-in</string>
+    <string name="localization">Localização</string>
+    <string name="share_with">Compartilhar com...</string>
+
+    <!--check-in-->
+    <string name="your_name">seu nome</string>
+    <string name="your_email">seu e-mail</string>
+    <string name="checkin_successful">check-in realizado com sucesso!</string>
+    <string name="checkin_error">Oops!\nOcorreu um erro</string>
+
+    <!--google maps api key-->
+    <string name="google_maps_key">AIzaSyAXyUIxLOex_u-cMJn7aI_0r9IBDWmIX5c</string>
+
+    <!--error modal-->
+    <string name="error_ocurred">Oops!\nOcorreu algum erro</string>
+    <string name="try_again">Tentar novamente</string>
 </resources>
