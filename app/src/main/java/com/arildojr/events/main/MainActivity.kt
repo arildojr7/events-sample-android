@@ -2,6 +2,7 @@ package com.arildojr.events.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.arildojr.events.R
 import com.arildojr.events.core.base.BaseActivity
 import com.arildojr.events.core.util.hasInternet
@@ -9,6 +10,7 @@ import com.arildojr.events.databinding.ActivityMainBinding
 import com.arildojr.events.eventdetail.EventDetailActivity
 import com.arildojr.events.main.adapter.MainEventsAdapter
 import com.arildojr.events.main.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -19,15 +21,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
+        binding.progressLoaderEventList.visibility = View.GONE
 
-        if (hasInternet(this)) {
-            viewModel.setInternetAccess(true)
-            viewModel.getEvents()
-        } else {
-            viewModel.setInternetAccess(false)
+        launch {
+            if (hasInternet(this@MainActivity)) {
+                viewModel.setInternetAccess(true)
+                viewModel.getEvents()
+            } else {
+                viewModel.setInternetAccess(false)
+            }
         }
-
         setupRecyclerView()
+
     }
 
     private fun setupRecyclerView() {
@@ -41,9 +46,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun onConnectionChanged(isConnected: Boolean) {
-        viewModel.setInternetAccess(isConnected)
-        if (isConnected) { viewModel.getEvents() }
-        binding.invalidateAll()
+        launch {
+            viewModel.setInternetAccess(isConnected)
+            if (isConnected) { viewModel.getEvents() }
+            binding.invalidateAll()
+        }
     }
 
     companion object {

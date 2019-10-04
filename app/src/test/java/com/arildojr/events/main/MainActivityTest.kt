@@ -32,7 +32,6 @@ class MainActivityTest {
 
     private lateinit var activity: MainActivity
     private lateinit var activityController: ActivityController<MainActivity>
-
     private val testEvents = listOf(
         Event(
             "event1",
@@ -79,6 +78,17 @@ class MainActivityTest {
 
         Assert.assertEquals(testEvents[0].title, title1)
         Assert.assertEquals(testEvents[1].title, title2)
+    }
+
+    @Test
+    fun `get item count, when request item count, then return number of items`() {
+        val adapter = MainEventsAdapter(testEvents) {}
+
+        //initial state
+        val initialExpected = 2
+        val initialActual = adapter.itemCount
+
+        Assert.assertEquals(initialExpected, initialActual)
     }
 
     private fun RecyclerView.update() {

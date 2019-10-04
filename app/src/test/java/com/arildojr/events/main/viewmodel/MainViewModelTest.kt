@@ -15,8 +15,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -59,13 +57,15 @@ class MainViewModelTest {
 
     @Test
     fun `get events, when requested to get events, then set in liveData`() {
-        val eventsLiveData = mainViewModel.events
-        val observer = mock() as Observer<List<Event>>
-        eventsLiveData.observeForever(observer)
+        runBlocking {
+            val eventsLiveData = mainViewModel.events
+            val observer = mock() as Observer<List<Event>>
+            eventsLiveData.observeForever(observer)
 
-        mainViewModel.getEvents()
+            mainViewModel.getEvents()
 
-        verify(observer).onChanged(testEvents)
+            verify(observer).onChanged(testEvents)
+        }
     }
 
     @Test
