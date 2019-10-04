@@ -3,8 +3,10 @@ package com.arildojr.events.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import com.arildojr.events.R
 import com.arildojr.events.core.base.BaseActivity
+import com.arildojr.events.core.customview.ErrorDialog
 import com.arildojr.events.core.util.hasInternet
 import com.arildojr.events.databinding.ActivityMainBinding
 import com.arildojr.events.eventdetail.EventDetailActivity
@@ -13,8 +15,8 @@ import com.arildojr.events.main.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main),
+    ErrorDialog.ErrorListener {
     private val viewModel: MainViewModel by viewModel()
     private lateinit var eventsAdapter: MainEventsAdapter
 
@@ -23,6 +25,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.viewModel = viewModel
         binding.progressLoaderEventList.visibility = View.GONE
 
+        getEvents()
+        setupRecyclerView()
+
+    }
+
+    private fun getEvents() {
         launch {
             if (hasInternet(this@MainActivity)) {
                 viewModel.setInternetAccess(true)
@@ -31,8 +39,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 viewModel.setInternetAccess(false)
             }
         }
-        setupRecyclerView()
-
     }
 
     private fun setupRecyclerView() {
@@ -48,9 +54,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onConnectionChanged(isConnected: Boolean) {
         launch {
             viewModel.setInternetAccess(isConnected)
-            if (isConnected) { viewModel.getEvents() }
+            if (isConnected) {
+                viewModel.getEvents()
+            }
             binding.invalidateAll()
         }
+    }
+
+    override fun subscribeUi() {
+        viewModel.isError.observe(this, Observer { error ->
+            if (error) {
+                ErrorDialog(this).show(supportFragmentManager, EventDetailActivity.ERROR_DIALOG)
+            }
+        })
+    }
+
+    override fun onClickRetry() {
+        getEvents()
     }
 
     companion object {
