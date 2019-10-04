@@ -16,6 +16,6 @@
     <string name="google_maps_key">AIzaSyAXyUIxLOex_u-cMJn7aI_0r9IBDWmIX5c</string>
 
     <!--error modal-->
-    <string name="error_ocurred">Oops!\nOcorreu algum error</string>
+    <string name="error_ocurred">Oops!\nOcorreu algum erro</string>
     <string name="try_again">Tentar novamente</string>
 </resources>
