@@ -74,7 +74,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/ubuntu_medium"
                 android:paddingTop="16dp"
-                android:text="@string/no_internet"
+                android:text="@string/error_ocurred"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp" />

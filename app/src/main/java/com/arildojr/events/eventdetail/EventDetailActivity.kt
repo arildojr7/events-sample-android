@@ -6,9 +6,7 @@ import com.arildojr.data.event.model.Event
 import com.arildojr.events.R
 import com.arildojr.events.core.base.BaseActivity
 import com.arildojr.events.core.customview.MapViewCustom
-import com.arildojr.events.core.customview.NoInternetDialog
 import com.arildojr.events.core.extension.clickWithDebounce
-import com.arildojr.events.core.util.hasInternet
 import com.arildojr.events.core.util.shareContent
 import com.arildojr.events.databinding.ActivityEventDetailBinding
 import com.arildojr.events.eventdetail.customview.CheckInDialog
@@ -48,11 +46,7 @@ class EventDetailActivity :
 
     private fun setupListeners() {
         binding.btnCheckIn.clickWithDebounce {
-            if (hasInternet(this)) {
-                CheckInDialog().show(supportFragmentManager, CHECKIN_DIALOG)
-            } else {
-                NoInternetDialog().show(supportFragmentManager, NO_INTERNET_DIALOG)
-            }
+            CheckInDialog().show(supportFragmentManager, CHECKIN_DIALOG)
         }
         binding.fabShare.clickWithDebounce {
             shareContent(event?.title, event?.description, this)
