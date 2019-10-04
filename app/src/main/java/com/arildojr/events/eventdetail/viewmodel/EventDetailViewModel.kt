@@ -9,7 +9,6 @@ import com.arildojr.data.event.EventRepository
 import com.arildojr.data.event.dto.CheckInUserDTO
 import com.arildojr.data.event.model.Event
 import com.arildojr.events.core.base.BaseViewModel
-import kotlinx.coroutines.launch
 
 class EventDetailViewModel(private val eventRepository: EventRepository) : BaseViewModel() {
 
@@ -18,7 +17,7 @@ class EventDetailViewModel(private val eventRepository: EventRepository) : BaseV
     private val _checkInResult = MutableLiveData<Boolean>()
     val checkInResult: LiveData<Boolean> = Transformations.map(_checkInResult) { it }
 
-    fun checkIn(request: CheckInUserDTO) = launch {
+    suspend fun checkIn(request: CheckInUserDTO) {
         _checkInResult.postValue(eventRepository.checkIn(request))
     }
 
