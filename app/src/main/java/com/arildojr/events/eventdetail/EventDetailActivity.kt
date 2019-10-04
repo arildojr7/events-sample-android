@@ -95,6 +95,6 @@ class EventDetailActivity :
 
     companion object {
         const val CHECKIN_DIALOG = "checkin_dialog"
-        const val NO_INTERNET_DIALOG = "no_internet_dialog"
+        const val ERROR_DIALOG = "no_internet_dialog"
     }
 }
