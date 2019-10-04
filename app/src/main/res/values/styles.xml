@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
@@ -16,6 +16,16 @@
     <style name="ProgressLoader" parent="Widget.AppCompat.ProgressBar">
         <item name="colorAccent">@color/white</item>
         <item name="android:indeterminateTint" tools:targetApi="lollipop">@color/white</item>
+    </style>
+
+    <style name="MaterialButton" parent="Widget.MaterialComponents.Button">
+        <item name="colorAccent">@color/white</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+    </style>
+    <style name="FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:paddingTop">0dp</item>
     </style>
 
     <style name="RoundedModal" parent="Theme.MaterialComponents.Dialog">

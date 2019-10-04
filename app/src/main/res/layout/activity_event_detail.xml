@@ -75,6 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
+                        android:gravity="top"
                         android:orientation="horizontal"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -84,6 +85,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu"
+                            android:layout_gravity="center"
                             android:gravity="start"
                             android:text="@{event.description}"
                             android:textColor="@color/white"
@@ -95,13 +97,13 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnCheckIn"
-                            style="@style/Widget.MaterialComponents.Button"
+                            style="@style/MaterialButton"
                             android:layout_width="wrap_content"
                             android:layout_height="56dp"
                             android:layout_marginEnd="8dp"
-                            android:backgroundTint="@color/colorAccent"
                             android:clickable="true"
                             android:focusable="true"
+                            android:layout_gravity="center"
                             android:fontFamily="@font/ubuntu_medium"
                             android:text="@string/checkin"
                             android:textColor="@color/white"
@@ -109,17 +111,16 @@
 
                         <com.google.android.material.floatingactionbutton.FloatingActionButton
                             android:id="@+id/fabShare"
-                            style="@style/Widget.MaterialComponents.FloatingActionButton"
+                            style="@style/FloatingActionButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:clickable="true"
-                            android:focusable="true"
                             android:fontFamily="@font/ubuntu_medium"
                             android:src="@drawable/ic_share"
                             app:backgroundTint="@color/colorAccent"
-                            app:cornerRadius="24dp"
                             app:fabCustomSize="48dp"
+                            android:elevation="0dp"
+                            app:elevation="0dp"
                             app:tint="@color/white" />
 
                     </LinearLayout>

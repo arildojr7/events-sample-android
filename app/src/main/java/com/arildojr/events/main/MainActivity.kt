@@ -26,8 +26,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main),
         binding.progressLoaderEventList.visibility = View.GONE
 
         getEvents()
+        setupSwipeRefresh()
         setupRecyclerView()
 
+    }
+
+    private fun setupSwipeRefresh() {
+        binding.swipeRefreshHome.setOnRefreshListener {
+            getEvents()
+            binding.swipeRefreshHome.isRefreshing = false
+        }
     }
 
     private fun getEvents() {

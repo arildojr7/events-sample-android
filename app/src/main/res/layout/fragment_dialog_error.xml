@@ -45,7 +45,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRetry"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/MaterialButton"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
             app:layout_constraintTop_toBottomOf="@id/tvError"
@@ -53,14 +53,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/colorAccent"
             android:clickable="true"
             android:layout_marginBottom="16dp"
             android:focusable="true"
             android:fontFamily="@font/ubuntu_medium"
             android:text="@string/try_again"
-            android:textColor="@color/white"
-            app:cornerRadius="24dp" />
+            android:textColor="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
